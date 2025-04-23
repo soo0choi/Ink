@@ -1,16 +1,17 @@
 ---
 layout: project_page
 permalink: /
-title: "SIDL: A Real-World Dataset for Restoring Smartphone Images with Dirty Lenses"
-presentation: "AAAI 2025"
+title: "Hello, Stranger"
+presentation: "글로벌미디어학부 2025 졸업전시"
+team:
+  - Ink
 authors:
-  - Sooyoung Choi*
-  - Sungyong Park*
-  - Heewon Kim
+  - 최수영
+  - 곽윤희
+  - 조연정
 affiliations:
   - Soongsil University
-paper: "https://ojs.aaai.org/index.php/AAAI/article/view/32257"
-video: "https://youtu.be/5nSJh-IPWd0"
+video: ""
 code: "https://github.com/sidl-benchmark/sidl-benchmark.github.io"
 data: "https://github.com/your-repo/dataset"
 ---
