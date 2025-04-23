@@ -6,8 +6,8 @@ presentation: "글로벌미디어학부 2025 졸업전시"
 team:
   - Ink
 authors:
-  - 최수영
-  - 곽윤희
+  - 최수영*
+  - 곽윤희*
   - 조연정
 affiliations:
   - Soongsil University
