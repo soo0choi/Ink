@@ -12,7 +12,7 @@ authors:
 affiliations:
   - Soongsil University
 video: ""
-code: "[https://github.com/sidl-benchmark/sidl-benchmark.github.io](https://github.com/soo0choi/Ink.git)"
+code: "https://github.com/soo0choi/Ink.git"
 data: "https://github.com/your-repo/dataset"
 ---
 
