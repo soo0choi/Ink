@@ -11,9 +11,6 @@ authors:
   - 조연정
 affiliations:
   - Soongsil University
-video: ""
-code: "https://github.com/soo0choi/Ink.git"
-data: "https://github.com/your-repo/dataset"
 ---
 
 <style>
