@@ -1,8 +1,8 @@
 # Site settings
 title: Hello,Stranger
 description: Ink
-baseurl: "https://soo0choi.github.io/Ink.github.io/"  # organization.github.io를 사용할 경우
-#url: "https://soo0choi.github.io/Ink.github.io/"  # 만든 organization 이름으로 수정
+#baseurl: "https://soo0choi.github.io/Ink.github.io/"  # organization.github.io를 사용할 경우
+url: "https://soo0choi.github.io/Ink.github.io/"  # 만든 organization 이름으로 수정
 
 # Build settings
 #markdown: kramdown
