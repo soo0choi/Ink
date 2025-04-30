@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hello, Stranger</title>
+  <style>
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem;
+      font-family: sans-serif;
+      text-align: left;
+    }
+    header {
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header .subtitle {
+      margin: 0.25rem 0 0 0;
+      color: #666;
+      font-size: 1rem;
+    }
+    /* 이미지 행 */
+    .image-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .image-row img {
+      width: 48%;
+      height: auto;
+      display: block;
+    }
+    section + section {
+      margin-top: 2rem;
+    }
+    section h2 {
+      margin-bottom: 0.5rem;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #eee;
+      margin: 0.5rem 0 1rem;
+    }
+    .team-member {
+      display: inline-block;
+      vertical-align: top;
+      width: 30%;
+      min-width: 200px;
+      margin-right: 1%;
+      text-align: left;
+    }
+    .team-member:last-child {
+      margin-right: 0;
+    }
+  </style>
 </head>
 <body>
+
   <header>
     <h1>Hello, Stranger</h1>
-    <h3><a href="http://Team.Ink" target="_blank" rel="noopener">Team.Ink</a></h3>
-    <p>글로벌미디어학부 2025 졸업전시</p>
+    <p class="subtitle"><a href="http://Team.Ink" target="_blank" rel="noopener">Team.Ink</a></p>
+    <p class="subtitle">글로벌미디어학부 2025 졸업전시</p>
   </header>
-</body>
-</html>
 
-
-<style>
-  /* 전체 컨테이너 가운데 정렬, 적절한 최대 너비 지정 */
-  .project-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  /* 이미지 블록 */
-  .image-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .image-row img {
-    width: 48%;
-    height: auto;
-    display: block;
-  }
-  /* 각 section 제목과 내용 간격 */
-  section {
-    margin-bottom: 2rem;
-  }
-  section h2 {
-    margin-bottom: 0.5rem;
-  }
-  hr {
-    border: none;
-    border-top: 2px solid #ccc;
-    margin-bottom: 1rem;
-  }
-  /* 팀원 소개: inline-block 으로 가로배치, 모바일에서는 세로로 쌓임 */
-  .team-member {
-    display: inline-block;
-    vertical-align: top;
-    width: 30%;
-    min-width: 200px;
-    margin-right: 1%;
-  }
-  .team-member:last-child {
-    margin-right: 0;
-  }
-</style>
-
-<div class="project-container">
-
-  <!-- 이미지 행 -->
+  <!-- 사진 행 (작품 소개 위) -->
   <div class="image-row">
     <img src="images/wave01.png" alt="wave 001">
     <img src="images/bell01.jpg" alt="bell 001">
@@ -113,4 +120,5 @@
     </div>
   </section>
 
-</div>
+</body>
+</html>
