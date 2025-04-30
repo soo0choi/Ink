@@ -1,17 +1,19 @@
----
-layout: project_page
-permalink: /
-title: "Hello, Stranger"
-presentation: "글로벌미디어학부 2025 졸업전시"
-team:
-  - Ink
-authors:
-  - 최수영
-  - 곽윤희
-  - 조연정
-affiliations:
-  - Soongsil University
----
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello, Stranger</title>
+</head>
+<body>
+  <header>
+    <h1>Hello, Stranger</h1>
+    <h3><a href="http://Team.Ink" target="_blank" rel="noopener">Team.Ink</a></h3>
+    <p>글로벌미디어학부 2025 졸업전시</p>
+  </header>
+</body>
+</html>
+
 
 <style>
   /* 전체 컨테이너 가운데 정렬, 적절한 최대 너비 지정 */
