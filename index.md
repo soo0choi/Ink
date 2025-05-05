@@ -111,6 +111,7 @@
         <h3>곽윤희</h3>
         <ul>
           <li>기획, 디자인</li>
+          <li><a href="mailto:misodul0826@naver.com"><li><a href="mailto:misodul0826@naver.com">misodul0826@naver.com</a></li></a></li>
         </ul>
       </div>
       <div class="team-member">
