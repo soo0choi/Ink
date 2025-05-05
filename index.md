@@ -68,7 +68,6 @@
 </head>
 <body>
   <header>
-    <h1>Hello, Stranger</h1>
     <p class="subtitle">Team.Ink</p>
     <p class="subtitle">글로벌미디어학부 2025 졸업전시</p>
   </header>
