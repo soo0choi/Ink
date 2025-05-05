@@ -18,6 +18,7 @@
     header h1 {
       margin: 0;
       font-size: 2rem;
+      color: #000; /* 파란색 링크로 보이지 않도록 */
     }
     header .subtitle {
       margin: 0.25rem 0 0;
@@ -68,7 +69,7 @@
 <body>
   <header>
     <h1>Hello, Stranger</h1>
-    <p class="subtitle"><a href="http://Team.Ink" target="_blank" rel="noopener">Team.Ink</a></p>
+    <p class="subtitle">Team.Ink</p>
     <p class="subtitle">글로벌미디어학부 2025 졸업전시</p>
   </header>
 
