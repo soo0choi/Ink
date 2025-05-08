@@ -1,3 +1,4 @@
 bell.mp4 filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 Bell.mp4 filter=lfs diff=lfs merge=lfs -text
+main.mp4 filter=lfs diff=lfs merge=lfs -text
