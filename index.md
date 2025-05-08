@@ -1,126 +1,422 @@
-
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+  <title>Hello, Stranger</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    body {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 1rem;
-      font-family: sans-serif;
-      text-align: left;
-    }
-    header {
-      margin-bottom: 2rem;
-    }
-    header h1 {
+    * {
       margin: 0;
-      font-size: 2rem;
-      color: #000; /* 파란색 링크로 보이지 않도록 */
+      padding: 0;
+      box-sizing: border-box;
     }
-    header .subtitle {
-      margin: 0.25rem 0 0;
-      color: #666;
-      font-size: 1rem;
+    html, body {
+      background: white;
+      font-family: sans-serif;
+      scroll-behavior: smooth;
     }
-    .image-row {
+    .title-container {
+      position: relative;
+      z-index: 0;
+      width: 100%;
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      align-items: center;
+      justify-content: center;
+      transition: height 1.5s ease;
+      overflow: hidden;
+      background: white;
     }
-    .image-row img {
-      width: 48%;
-      height: auto;
-      display: block;
+    .title-container.shrink {
+      height: calc(100vh - 15rem); /* 이동한 .title 위치 기준으로 설정 */
+      background: transparent;
+        /* url('file:///D:/숭실대학교/4학년/졸업전시/Web/images/Rectangle.png') center/cover no-repeat; */
+    }
+    /* video 요소를 배경처럼 채우기 */
+    .title-container video.bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;  
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;  
+      opacity: 0;
+      transition: opacity 0.5s ease;              /* 텍스트 뒤로 보내기 */
+    }
+    .title-container.shrink video.bg {
+      opacity: 1;
+    }
+    .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Inria Serif', serif;
+      font-weight: bold;
+      font-size: 4rem;
+      transition: 
+        top 1.5s ease,
+        left 1.5s ease,
+        transform 1.5s ease,
+        font-size 1.5s ease;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .title.moved {
+      top: auto;
+      bottom: 2rem;
+      left: 10rem;
+      transform: translate(0, 0);
+      font-size: 3rem;
+      color: #DCDCDC;
+    }
+    .cursor {
+      display: inline-block;
+      margin-left: 2px;
+      animation: blink 1s steps(2, start) infinite;
+      color: black;
+      font-weight: bold;
+    }
+    .title-container.shrink .cursor,
+    .title.moved .cursor {
+      color: #DCDCDC;                /* 변경될 커서 색 */
+    }
+    @keyframes blink {
+      to { visibility: hidden; }
+    }
+    #subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.0rem;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    main {
+      position: relative;
+      z-index: 1;
+      background: white;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+      padding-top: 10rem;
     }
     section + section {
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
-    section h2 {
+    h2 {
+      font-size: 1.5rem;
       margin-bottom: 0.5rem;
     }
     hr {
       border: none;
       border-top: 2px solid #eee;
-      margin: 0.5rem 0 1rem;
+      margin-bottom: 1rem;
+    }
+    ul {
+      padding-left: 1.25rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
     }
     .team-list {
       display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-top: 1rem;
+      justify-content: center;
+      gap: 0.3rem;
+      margin-top: 2rem;
     }
     .team-member {
-      width: 30%;
-    }
-    .team-member h3 {
-      margin-bottom: 0.25rem;
+      text-align: center;
+      margin: 0 1rem;
+      gap: 0.1rem;
     }
     .team-member ul {
       list-style: disc;
-      padding-left: 1.25rem;
-      margin: 0;
+      padding-left: 1.2rem;
+    }
+    .team-member-img {
+      width: 270px;
+      height: 360px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+    }
+    .team-member p {
+      margin: 0.3rem 0;
+    }
+    .centered-text {
+      text-align: center;
+      padding: 0 0 4rem 0;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .content-title {
+      font-family: 'Inria Serif', serif;
+      font-size: 2.0rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 5rem;
+      margin-bottom: 0rem;
+    }
+    .video-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+    }
+    .video {
+      width: 350px;
+      height: 350px;
+      display: block;
+      object-fit: contain;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3rem;                /* 원하시는 높이로 조정 */
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;             /* 좌우 여백 */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 100;                /* 다른 요소 위에 뜨도록 */
+      transition: transform 0.3s ease;
+    }
+    .navbar.hide {
+      transform: translateY(-100%);     /* 위로 완전히 숨김 */
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .nav-item {
+      color: black;
+      text-decoration: none;
+      font-family: 'Inria Serif', serif;
+      font-size: 1rem;
+      margin-right: 1.5rem;        /* 아이템 간 간격 */
+    }
+    .nav-right .nav-item {
+      margin-right: 0;             /* 오른쪽은 맨 끝이므로 여백 제거 */
+    }
+    /* body 내용이 상단바 뒤에 숨어서 보이지 않도록 패딩 추가 */
+    body {
+      padding-top: 3rem;           /* navbar 높이와 같게 설정 */
+    }
+    .site-footer {
+      background: white;         /* 배경 흰색 */
+      text-align: center;
+      padding: 1rem 0;           /* 위아래 여백 */
+      border-top: 1px solid #ccc;/* 푸터 맨 위에만 실선 */
+    }
+    .site-footer p {
+      margin: 0.5rem 0 0;        /* 위에 0.5rem 간격 */
+      font-size: 0.8rem;
+      color: #666;
+      margin: 0.2rem 0;
     }
   </style>
 </head>
-<body>
-  <header>
-    <p class="subtitle">Team.Ink</p>
-    <p class="subtitle">글로벌미디어학부 2025 졸업전시</p>
-  </header>
-
-  <div class="image-row">
-    <img src="images/wave01.png" alt="wave 001">
-    <img src="images/bell01.jpg" alt="bell 001">
+<header class="navbar">
+  <nav class="nav-left">
+    <a href="#" class="nav-item">Hello, Stranger</a>
+    <a href="visit.html" class="nav-item">Visit</a>
+  </nav>
+  <div class="nav-right">
+    <a href="#team-ink" class="nav-item">Team.Ink</a>
   </div>
-
-  <section>
-    <h2>작품 소개</h2>
-    <hr />
-    <p><strong>Hello, Stranger</strong>는 낯선 이가 건네는 소리와 색을 통해 개인의 경험과 감성을 일깨우는 미디어아트입니다.</p>
-    <p>낯선 이와의 눈맞춤 속, 관람객이 <strong>느끼는 모든 것이 작품의 의미</strong>가 되는 경험을 선사합니다.</p>
-    <p>이 공간에는 수많은 사람들의 기억과 감정이 그대로 남아 스며듭니다.</p>
-  </section>
-
-  <section>
-    <h2>기술 스택</h2>
-    <hr />
-    <ul>
-      <li>Touch Designer</li>
-      <li>Maya</li>
-      <li>Arduino</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>팀원 소개</h2>
-    <hr />
-    <div class="team-list">
-      <div class="team-member">
-        <h3>최수영</h3>
-        <ul>
-          <li>기획, 개발</li>
-          <li><a href="mailto:csy010921@naver.com">csy010921@naver.com</a></li>
-        </ul>
-      </div>
-      <div class="team-member">
-        <h3>곽윤희</h3>
-        <ul>
-          <li>기획, 디자인</li>
-          <li><a href="mailto:angela733@naver.com">angela733@naver.com</a></li>
-        </ul>
-      </div>
-      <div class="team-member">
-        <h3>조연정</h3>
-        <ul>
-          <li>기획, 디자인</li>
-          <li><a href="mailto:misodul0826@naver.com">misodul0826@naver.com</a></li>
-        </ul>
+</header>
+<body>
+  <div class="title-container">
+    <video id="bgVideo" class="bg" muted loop playsinline>
+      <source src="images/main.mp4" type="video/mp4">
+    </video>
+    <div class="title" id="title">
+      <div>
+        <span id="typed-text"></span><span class="cursor">|</span>
+        <p id="subtitle">Team. Ink<br />Global Media 24th Graduation Exhibition</p>
       </div>
     </div>
-  </section>
+  </div>
+  <main>
+    <section class="centered-text fade-in">
+      <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Hello, Stranger</strong>는 낯선 이가 건네는 소리와 색을 통해 개인의 경험과 감성을 일깨우는 미디어아트입니다.</p>
+      <p>낯선 이와의 눈맞춤 속, 관람객이 <strong>느끼는 모든 것이 작품의 의미</strong>가 되는 경험을 선사합니다.</p>
+      <p>이 공간에는 수많은 사람들의 기억과 감정이 그대로 남아 스며듭니다.</p>
+    </section>
+
+
+    <section class="centered-text fade-in">
+      <h2 class="content-title">The Stranger</h2>
+      <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">The Stranger</strong>는 형태로 정의할 수 없는, 모호하고 신비로운 존재입니다.</p>
+      <p>각자가 지닌 경험과 사유만이 그것을 비추는 유일한 거울이 됩니다.</p>
+      <p>이 낯선 존재는 색과 소리로 당신에게 속삭이며, 그 울림을 따라 걸어갈 때 비로소 <strong>당신만의 고유한 내면 세계</strong>가 선명히 드러날 것입니다.</p>
+    </section>   
+
+
+    <section class="centered-text fade-in">
+      <h2 class="content-title">Art Works</h2>
+      <div class="video-container">
+        <!-- 첫 번째 영상 -->
+        <div class="video-item">
+          <div class="video">
+            <video class="video" controls autoplay muted style="position: relative; left: -3rem;">
+              <source src="images/Wave_c.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="video-text" style="flex:1; text-align:left; margin-left:0rem;">
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 1. Wave</strong></p>
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Wave</strong>는 밀려오는 파도의 율동과 그 울림을 시각화한 미디어 아트로, 관객을 잔잔한 바닷속 심연으로 초대합니다.<br>
+              파도가 부서지는 순간의 물결과 깊은 바다의 리듬을 온몸으로 체감하게 합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 두 번째 영상 -->
+        <div class="video-item" style="display: flex; flex-direction: row-reverse; align-items: center; gap: 2rem;">
+          <div class="video" style="flex: 0 0 350px;">
+            <video controls autoplay muted style="width:100%; height:100%; object-fit: contain;">
+              <source src="images/bell.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-text" style="flex:1; text-align: right; margin-right: 3rem;">
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 2. Bell</strong></p>
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Bell</strong>은 익숙한 종소리가 울렸던 그 장소로 우리를 데려가, 잊혀진 기억을 다시 일깨웁니다.<br>종의 떨림에 반응해 춤을 추는 다채로운 파티클이 공중에 흩어지며, 소리와 시각이 어우러진 생생한 순간을 선사합니다.</p>
+          </div>
+        </div>
+
+        <!-- 세 번째 영상 -->
+        <div class="video-item">
+          <div class="video">
+            <video class="video" controls autoplay muted style="position: relative; left: -3rem;">
+              <source src="images/heart_c.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="video-text" style="flex:1; text-align:left; margin-left:0rem;">
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 3. Heart</strong></p>
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Heart</strong>는 끊임없이 뛰는 심장과 사그라드는 불씨를 동시에 포착한 작품입니다.<br>
+              보이지 않던 생명의 박동을 선명한 이미지로 드러내어, 우리가 잠시 잊고 있던 존재의 맥박을 다시금 깨닫게 합니다.            
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="team-ink" class="centered-text fade-in">
+      <h2 class="content-title">Team.Ink</h2>
+      <div class="team-list">
+        <div class="team-member">
+          <img src="images/수영-3.jpg" alt="최수영" class="team-member-img" />
+          <h3>최수영</h3>
+          <p style="font-family: 'Inria Serif', serif; margin: 0; padding: 0;">Creative Technologist</p>
+          <p style="font-family: 'Inria Serif', serif; margin: 0; padding: 0;">csy010921@naver.com</a></p>
+        </div>
+        <div class="team-member">
+          <img src="images/윤희-2.jpg" alt="곽윤희" class="team-member-img" />
+          <h3>곽윤희</h3>
+          <p style="font-family: 'Inria Serif', serif; margin: 0; padding: 0;">3D Graphic & Media Artist</p>
+          <p style="font-family: 'Inria Serif', serif; margin: 0; padding: 0;">angela733@naver.com</a></p>
+        </div>
+        <div class="team-member">
+          <img src="images/연정-2.jpg" alt="조연정" class="team-member-img" />
+          <h3>조연정</h3>
+          <p style="font-family: 'Inria Serif', serif; margin: 0; padding: 0;">Sound & Graphic Artist</p>
+          <p style="font-family: 'Inria Serif', serif; margin: 0; padding: 0;">misodul0826@naver.com</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const text = "Hello, Stranger";
+    const typedTextElement = document.getElementById("typed-text");
+    const subtitle = document.getElementById("subtitle");
+    const titleDiv = document.getElementById("title");
+    let index = 0;
+    
+    (function(){
+      const navbar = document.querySelector('.navbar');
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const current = window.pageYOffset;
+        if (current > lastScroll && current > 50) {
+          // 아래로 스크롤 중이면 숨기기
+          navbar.classList.add('hide');
+        } else {
+          // 위로 스크롤 중이면 보이기
+          navbar.classList.remove('hide');
+        }
+        lastScroll = current;
+      });
+    })();
+
+    function typeText() {
+      if (index < text.length) {
+        typedTextElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeText, 180);
+      } else {
+        subtitle.style.opacity = 1;
+        setTimeout(() => {
+          titleDiv.classList.add("moved");
+          document.querySelector('.title-container').classList.add("shrink");
+
+          // ★ 애니메이션 끝난 직후 비디오 재생 호출
+          const bgVideo = document.getElementById('bgVideo');
+          bgVideo.play();
+        }, 800);
+      }
+    }
+
+    typeText();
+
+    const fadeEls = document.querySelectorAll('.fade-in');
+
+    function handleScrollFadeIn() {
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScrollFadeIn);
+    window.addEventListener('load', handleScrollFadeIn); // 초기 로딩 시도 체크
+  </script>
+
+  <footer class="site-footer">
+    <p class="footer-line">Hello, Stranger</p>
+    <p class="footer-line">Global Media 24th Graduation Exhibition</p>
+    <p class="footer-line">© Team.Ink</p>
+  </footer>
 </body>
 </html>
