@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <title>Visit – Hello, Stranger</title>
   <style>
@@ -9,7 +10,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: sans-serif;
-      padding-top: 3rem;              /* 헤더 높이만큼 여백 */
+      padding-top: 3rem; /* 헤더 높이만큼 여백 */
       background: #fafafa;
       color: #333;
     }
@@ -40,41 +41,71 @@
       color: black;
       text-decoration: none;
       font-family: 'Inria Serif', serif;
-      font-size: 1rem;
-      margin-right: 1.5rem;        /* 아이템 간 간격 */
+      font-size: 1rem !important;
+      margin-right: 1.7rem !important;        /* 아이템 간 간격 */
     }
     .nav-right .nav-item {
-      margin-right: 1rem;             /* 오른쪽은 맨 끝이므로 여백 제거 */
+      margin-right: 1rem !important;             /* 오른쪽은 맨 끝이므로 여백 제거 */
     }
 
-    /* 메인 컨테이너 */
+    /* 데스크톱: 고정된 최대폭, 두 칼럼 레이아웃 유지 */
     .container {
-      width: 80%;
-      height: 80vh;       /* 뷰포트 높이의 50% */
+      /* 데스크톱 고정폭 */
+      width: 1500px;
+      max-width: 100%;
       margin: 2rem auto;
       background: white;
       border: 1px solid #ddd;
       border-radius: 1rem;
-      padding: 5rem;      /* padding 은 필요에 맞게 조정 */
+      padding: 5rem;
       display: flex;
       gap: 2rem;
-      align-items: stretch;  /* 자식(.left/.right)을 컨테이너 높이에 맞춰 늘리기 */
+      align-items: stretch;
+      height: 80vh;;
     }
-    .right { 
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    /* 모바일/태블릿: 768px 이하에서만 반응형 적용 */
+@media (max-width: 768px) {
+      .container {
+        width: 90%;
+        flex-direction: column;
+        padding: 2rem;
+        height: auto;           /* 높이 자동 확장 */
+      }
+      .left img {
+        max-height: 50vh;
+      }
+      .map-wrap {
+        width: 100%;
+        padding-bottom: 56.25%;
+        flex: none;              /* 높이 패딩 비율로 제어 */
+        height: auto;
+      }
+      .nav-item {
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+      }
     }
+  .left img {
+    max-height: 50vh;
+  }
+  .map-wrap {
+    width: 100%;
+    padding-bottom: 56.25%;
+  }
+  .nav-item {
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+  }
+    .left, .right { flex: 1; }
     .left {
-      display: flex;             /* 플렉스 컨테이너로 만들어서 */
-      align-items: center;       /* 세로 중앙 정렬 */
-      justify-content: center;   /* 가로 중앙 정렬 (선택) */
+      display: flex; align-items: center; justify-content: center;
     }
     .left img {
-      max-width: 100%;           /* 너비는 넘치지 않게 */
-      max-height: 100%;          /* 높이는 컨테이너 높이를 넘지 않게 */
-      object-fit: contain;       /* 종횡비 유지하며 빈 영역은 비우기 */
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      border-radius: 0.5rem;
+    }
+    .right {
+      display: flex; flex-direction: column; align-items: center;
     }
     .right h1 {
       font-family: 'Inria Serif', serif;
@@ -88,20 +119,35 @@
       text-align: center;
     }
     .map-wrap {
-      flex: 1;                 /* 오른쪽 영역에서 남은 공간 전부 차지 */
-      height: 100%;            /* 부모(.right)의 높이에 맞춤 */
-      max-height: 100%;        /* 넘치지 않도록 */
+      width: 100%; max-width: 600px;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      position: relative;
       border: 1px solid #ccc;
       border-radius: 0.5rem;
       overflow: hidden;
-      width: 80%;
+      flex: none;
+    }
+    .map-wrap iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; border: 0;
     }
 
-    /* 3) iframe 은 CSS 로만 크기 제어 */
-    .map-wrap iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
+    /* 모바일: 세로 스택, 각 요소 가운데 정렬 */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 2rem;
+      }
+      .left img {
+        max-height: 50vh;
+      }
+      .map-wrap {
+        width: 100%; padding-bottom: 56.25%;
+      }
+      .nav-item {
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -123,41 +169,15 @@
       <div class="left">
         <img src="images/poster.jpg" alt="Hello, Stranger Graduation Exhibition Poster">
       </div>
-
       <!-- 오른쪽: 전시정보 + 지도 -->
       <div class="right">
-        <!-- ‘Global Media’ 텍스트에 원하는 링크를 넣어주세요 -->
-        <h1><a href="https://afterglow2025.github.io/afterglow2025/" target="_blank" style="text-decoration:none; color:inherit; align-items: center;">Global Media 24th Graduation Exhibition 🖇️</a></h1>
+        <p class="title"><a href="https://afterglow2025.github.io/afterglow2025/" target="_blank" style="text-decoration:none; color:inherit; font-size: 1.7rem; font-weight:700;">Global Media 24th Graduation Exhibition 🖇️</a></p>
         <p>2025.05.23 – 2025.05.25<br>10:00 – 17:00<br>마루아트센터 B1</p>
-
         <div class="map-wrap">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.250712101855!2d126.98273217629698!3d37.572713623773076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca38275b7c6b1%3A0xa8333b6826cb4a0!2z66eI66Oo7JWE7Yq47IS87YSw!5e0!3m2!1sko!2skr!4v1746817026989!5m2!1sko!2skr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.2508914494324!2d126.9853071!3d37.5727094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca38275b7c6b1%3A0xa8333b6826cb4a0!2z66eI66Oo7JWE7Yq47IS87YSw!5e0!3m2!1sko!2skr!4v1746819089716!5m2!1sko!2skr" allowfullscreen loading="lazy"></iframe>
         </div>
-
-        
       </div>
     </div>
   </main>
-  <script>
-    (function(){
-      const navbar = document.querySelector('.navbar');
-      let lastScroll = 0;
-      window.addEventListener('scroll', () => {
-        const current = window.pageYOffset;
-        if (current > lastScroll && current > 50) {
-          // 아래로 스크롤 중이면 숨기기
-          navbar.classList.add('hide');
-        } else {
-          // 위로 스크롤 중이면 보이기
-          navbar.classList.remove('hide');
-        }
-        lastScroll = current;
-      });
-    })();
-  </script>
-
 </body>
 </html>
