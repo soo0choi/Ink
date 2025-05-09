@@ -12,7 +12,7 @@
       box-sizing: border-box;
     }
     html, body {
-      background: white;
+      background: #fafafa;
       font-family: sans-serif;
       scroll-behavior: smooth;
     }
@@ -56,11 +56,7 @@
       font-family: 'Inria Serif', serif;
       font-weight: bold;
       font-size: 4rem;
-      transition: 
-        top 1.5s ease,
-        left 1.5s ease,
-        transform 1.5s ease,
-        font-size 1.5s ease;
+      transition: top 1.5s ease, left 1.5s ease, transform 1.5s ease, font-size 1.5s ease;
       white-space: nowrap;
       z-index: 1;
     }
@@ -95,7 +91,7 @@
     main {
       position: relative;
       z-index: 1;
-      background: white;
+      background: #fafafa;
       max-width: 100%;
       margin: 0 auto;
       padding: 2rem 1rem 4rem;
@@ -129,6 +125,7 @@
       justify-content: center;
       gap: 0.3rem;
       margin-top: 2rem;
+      margin-bottom: 0rem;
     }
     .team-member {
       text-align: center;
@@ -170,6 +167,7 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* 비디오에 대한 스타일 */
     .video-container {
       display: flex;
       flex-direction: column;
@@ -179,6 +177,7 @@
       margin-top: 5rem;
       margin-bottom: 0rem;
     }
+
     .video-item {
       display: flex;
       flex-direction: row;
@@ -186,11 +185,18 @@
       gap: 2rem;
       align-items: center;
     }
+
     .video {
       width: 350px;
       height: 350px;
       display: block;
       object-fit: contain;
+    }
+
+    .video-text {
+      flex: 1;
+      text-align: left;
+      margin-left: 0rem;
     }
     .navbar {
       position: fixed;
@@ -229,7 +235,7 @@
       padding-top: 3rem;           /* navbar 높이와 같게 설정 */
     }
     .site-footer {
-      background: white;         /* 배경 흰색 */
+      background: #fafafa;         /* 배경 흰색 */
       text-align: center;
       padding: 1rem 0;           /* 위아래 여백 */
       border-top: 1px solid #ccc;/* 푸터 맨 위에만 실선 */
@@ -240,6 +246,93 @@
       color: #666;
       margin: 0.2rem 0;
     }
+    .video-item.bell-video {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .video-item.bell-video .video-text {
+      text-align: right;
+      margin-right: 3rem;
+    }
+    /* 모바일 버전에서 타이틀 애니메이션 후에도 가운데 정렬 유지 */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2rem;  /* 모바일에서 글씨 크기 조정 */
+        top: 50%;  /* 세로 위치는 그대로 */
+        left: 50%;  /* 가로는 중앙 정렬 */
+        transform: translate(-50%, -50%);  /* 왼쪽 위치 조정 */
+      }
+
+      .title.moved {
+        top: auto;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%); /* 세로는 기존 위치로, 가로는 중앙 정렬 */
+        font-size: 3rem;
+        color: #DCDCDC;
+      }
+    }
+
+    /* 모바일 버전에서 모든 동영상과 텍스트가 가운데 정렬되도록 */
+    @media (max-width: 768px) {
+      .video-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .video-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .video {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+
+      .video-text {
+        text-align: center;
+      }
+
+      /* Bell 비디오만 따로 세로로 정렬 */
+      .video-item.bell-video {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .video-item.bell-video .video-text {
+        text-align: center;
+        margin-right: 0;
+      }
+    }
+    @media (max-width: 768px) {
+      .team-list {
+        flex-direction: column;  /* 세로 배치 */
+        align-items: center;     /* 중앙 정렬 */
+        gap: 0rem;               /* 항목 간 간격 */
+        margin-bottom: 1rem;
+      }
+      
+      .team-member {
+        text-align: center;
+        margin: 0 0 2rem 0;      /* 각 항목 간 간격 */
+      }
+      
+      .team-member-img {
+        width: 250px;            /* 이미지 크기 조정 */
+        height: 350px;
+      }
+    }
+
   </style>
 </head>
 <header class="navbar">
@@ -254,7 +347,7 @@
 <body>
   <div class="title-container">
     <video id="bgVideo" class="bg" muted loop playsinline>
-      <source src="/images/main.mp4" type="video/mp4">
+      <source src="images/main.mp4" type="video/mp4">
     </video>
     <div class="title" id="title">
       <div>
@@ -282,11 +375,11 @@
     <section class="centered-text fade-in">
       <h2 class="content-title">Art Works</h2>
       <div class="video-container">
-        <!-- 첫 번째 영상 -->
+        <!-- 첫 번째 영상
         <div class="video-item">
           <div class="video">
             <video class="video" controls autoplay muted style="position: relative; left: -3rem;">
-              <source src="images/Wave_c.mp4" type="video/mp4">
+              <source src="images/Waves.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -296,32 +389,73 @@
               파도가 부서지는 순간의 물결과 깊은 바다의 리듬을 온몸으로 체감하게 합니다.
             </p>
           </div>
+        </div> -->
+        <!-- 첫 번째 영상 -->
+        <div class="video-item">
+          <div class="video">
+            <video class="video" controls autoplay muted>
+              <source src="images/Waves.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="video-text">
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 1. Wave</strong></p>
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Wave</strong>는 밀려오는 파도의 율동과 그 울림을 시각화한 미디어 아트로, 관객을 잔잔한 바닷속 심연으로 초대합니다.<br>
+              파도가 부서지는 순간의 물결과 깊은 바다의 리듬을 온몸으로 체감하게 합니다.
+            </p>
+          </div>
         </div>
 
         <!-- 두 번째 영상 -->
-        <div class="video-item" style="display: flex; flex-direction: row-reverse; align-items: center; gap: 2rem;">
+        <!-- <div class="video-item" style="display: flex; flex-direction: row-reverse; align-items: center; gap: 2rem;">
           <div class="video" style="flex: 0 0 350px;">
             <video controls autoplay muted style="width:100%; height:100%; object-fit: contain;">
-              <source src="/images/bell.mp4" type="video/mp4">
+              <source src="images/bell.mp4" type="video/mp4">
             </video>
           </div>
           <div class="video-text" style="flex:1; text-align: right; margin-right: 3rem;">
             <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 2. Bell</strong></p>
             <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Bell</strong>은 익숙한 종소리가 울렸던 그 장소로 우리를 데려가, 잊혀진 기억을 다시 일깨웁니다.<br>종의 떨림에 반응해 춤을 추는 다채로운 파티클이 공중에 흩어지며, 소리와 시각이 어우러진 생생한 순간을 선사합니다.</p>
           </div>
+        </div> -->
+        <div class="video-item bell-video">
+          <div class="video">
+            <video class="video" controls autoplay muted>
+              <source src="images/bell.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-text">
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 2. Bell</strong></p>
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Bell</strong>은 익숙한 종소리가 울렸던 그 장소로 우리를 데려가, 잊혀진 기억을 다시 일깨웁니다.<br>종의 떨림에 반응해 춤을 추는 다채로운 파티클이 공중에 흩어지며, 소리와 시각이 어우러진 생생한 순간을 선사합니다.</p>
+          </div>
         </div>
 
         <!-- 세 번째 영상 -->
-        <div class="video-item">
+        <!-- <div class="video-item">
           <div class="video">
             <video class="video" controls autoplay muted style="position: relative; left: -3rem;">
-              <source src="images/heart_c.mp4" type="video/mp4">
+              <source src="images/Heart.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
           <div class="video-text" style="flex:1; text-align:left; margin-left:0rem;">
             <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 3. Heart</strong></p>
             <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Heart</strong>는 끊임없이 뛰는 심장과 사그라드는 불씨를 동시에 포착한 작품입니다.<br>
+              보이지 않던 생명의 박동을 선명한 이미지로 드러내어, 우리가 잠시 잊고 있던 존재의 맥박을 다시금 깨닫게 합니다.            
+            </p>
+          </div>
+        </div> -->
+        <!-- 세 번째 영상 -->
+        <div class="video-item">
+          <div class="video">
+            <video class="video" controls autoplay muted>
+              <source src="images/Heart.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="video-text">
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.5rem;">Theme 3. Heart</strong></p>
+            <p><strong style="font-family: 'Inria Serif', serif; font-size: 1.3rem;">Heart</strong>는 끊임없이 뛰는 심장과 사그라지는 불씨를 동시에 포착한 작품입니다.<br>
               보이지 않던 생명의 박동을 선명한 이미지로 드러내어, 우리가 잠시 잊고 있던 존재의 맥박을 다시금 깨닫게 합니다.            
             </p>
           </div>
