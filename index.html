@@ -276,27 +276,7 @@
         color: #DCDCDC;
       }
     }
-    @media (max-width: 768px) {
-    /* 모바일에서만 다른 비디오를 보여주기 위한 CSS */
-        #main-video {
-            display: none;  /* 모바일에서 기본 비디오 숨기기 */
-        }
 
-        #mobile-video {
-            display: block;  /* 모바일에서 모바일 비디오만 표시 */
-        }
-    }
-
-    @media (min-width: 769px) {
-        /* 데스크탑에서만 기본 비디오를 보여주기 위한 CSS */
-        #mobile-video {
-            display: none;  /* 데스크탑에서 모바일 비디오 숨기기 */
-        }
-
-        #main-video {
-            display: block;  /* 데스크탑에서 기본 비디오만 표시 */
-        }
-    }
     /* 모바일 버전에서 모든 동영상과 텍스트가 가운데 정렬되도록 */
     @media (max-width: 768px) {
       .video-container {
@@ -368,16 +348,13 @@
 <body>
   <div class="title-container">
     <video id="bgVideo" class="bg" muted loop playsinline>
-        <!-- 기본 비디오 (데스크톱) -->
-        <source id="main-video" src="images/main.mp4" type="video/mp4">
-        <!-- 모바일 비디오 -->
-        <source id="mobile-video" src="images/main_mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+      <source src="https://github.com/soo0choi/Ink.github.io/raw/main/images/main.mp4" type="video/mp4">
     </video>
     <div class="title" id="title">
-        <div>
-            <span id="typed-text"></span><span class="cursor">|</span>
-            <p id="subtitle">Team. Ink<br />Global Media 24th Graduation Exhibition</p>
-        </div>
+      <div>
+        <span id="typed-text"></span><span class="cursor">|</span>
+        <p id="subtitle">Team. Ink<br />Global Media 24th Graduation Exhibition</p>
+      </div>
     </div>
   </div>
   <main>
